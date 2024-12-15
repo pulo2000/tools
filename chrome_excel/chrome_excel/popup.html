@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Excel 比对工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            min-width: 600px;
+            min-height: 400px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: inline-block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-group input[type="file"] {
+            display: none;
+            /* 隐藏默认的文件选择输入框 */
+        }
+
+        .custom-file-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            /* 默认背景颜色 */
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-input:hover {
+            background-color: #d0d0d0;
+            /* 鼠标悬停时的背景颜色 */
+        }
+
+        .custom-file-input.selected {
+            background-color: #c0c0c0;
+            /* 选择文件后的背景颜色 */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            /* 添加一些顶部间距 */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            display: none;
+            /* 初始状态下隐藏 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Excel 文件比对工具</h1>
+        <div class="input-group">
+            <label for="fileA" class="file-label">选择文件 A:</label>
+            <input type="file" id="fileA" accept=".xlsx, .xls" />
+            <button class="custom-file-input" id="selectFileA">选择文件 A</button>
+        </div>
+        <div class="input-group">
+            <label for="fileB" class="file-label">选择文件 B:</label>
+            <input type="file" id="fileB" accept=".xlsx, .xls" />
+            <button class="custom-file-input" id="selectFileB">选择文件 B</button>
+        </div>
+
+        <div class="input-group">
+            <label for="comparisonType">选择比对类型:</label>
+            <select id="comparisonType">
+                <option value="equal">等行比对</option>
+                <option value="key">主键比对</option>
+            </select>
+        </div>
+
+        <div id="keyColumnContainer" class="input-group hidden">
+            <label for="keyColumn">输入主键列名:</label>
+            <input type="text" id="keyColumn" placeholder="例如：唯一ID" />
+        </div>
+
+        <button id="compareButton">开始比对</button>
+        <div id="result"></div>
+    </div>
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="js/excel.js"></script>
+    <script src="js/popup.js"></script>
+</body>
+
+</html>
